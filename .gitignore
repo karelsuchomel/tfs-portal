@@ -1,10 +1,2 @@
-assets/css/
-assets/js/
-.sass-cache/
-.ftppass
-.jshintrc
+build/
 node_modules/
-development/node_modules/
-development/.ftppass
-development/.sass-cache/
-style.css.map

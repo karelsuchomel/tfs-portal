@@ -21,6 +21,7 @@
 		<?php wp_head(); ?>
 	</head>
 <body <?php body_class(); ?> >
+	<div id="root"></div>
 
 <?php require_once('template-parts/navigation/menu-top-bar.php') ?>
 
