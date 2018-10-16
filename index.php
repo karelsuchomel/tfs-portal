@@ -1,101 +1,57 @@
-<?php get_header();?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><?php bloginfo('name');?></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- info card -->
-	<?php require_once('template-parts/front-page/info-card.php'); ?>
+    <!-- Windows tile graphics and RSS feed -->
+    <?php $templateURL = get_bloginfo('template_url'); ?>
+    <meta name="application-name" content="www.zshroznova.cz"/>
+    <meta name="msapplication-square70x70logo" content="<?php echo $templateURL; ?>/assets/images/ms-windows-tiles/small.jpg"/>
+    <meta name="msapplication-square150x150logo" content="<?php echo $templateURL; ?>/assets/images/ms-windows-tiles/medium.jpg"/>
+    <meta name="msapplication-wide310x150logo" content="<?php echo $templateURL; ?>/assets/images/ms-windows-tiles/wide.jpg"/>
+    <meta name="msapplication-square310x310logo" content="<?php echo $templateURL; ?>/assets/images/ms-windows-tiles/large.jpg"/>
+    <meta name="msapplication-TileColor" content="#00b04c"/>
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://www.zshroznova.cz/feed/&amp;id=1;polling-uri2=http://notifications.buildmypinnedsite.com/?feed=https://www.zshroznova.cz/feed/&amp;id=2;polling-uri3=http://notifications.buildmypinnedsite.com/?feed=https://www.zshroznova.cz/feed/&amp;id=3;polling-uri4=http://notifications.buildmypinnedsite.com/?feed=https://www.zshroznova.cz/feed/&amp;id=4;polling-uri5=http://notifications.buildmypinnedsite.com/?feed=https://www.zshroznova.cz/feed/&amp;id=5; cycle=1"/>
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-	<div id="content" class="clear-both">
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <?php wp_head(); ?>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-		<!-- Listing posts -->
-		<div id="tab-switcher" class="clear-both">
-			<div id="posts" class="tab-button opened">Příspěvky</div>
-			<div id="agenda" class="tab-button">Nadcházející akce</div>
-			<div class="tab-divider"></div>
-		</div>
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-		<div id="posts-wrap" class="size-medium">
-			<div class="single-page-of-posts">
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <?php wp_footer(); ?>
+  </body>
+</html>
 
-		<?php 
-		define('__ROOT__', dirname(__FILE__) ); 
-		require_once( __ROOT__ . "/inc/time-since-posted.php" );
-		$currentTime = time();
-		?>
 
-		<!-- Start the loop -->
-		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-			<?php get_template_part('template-parts/post/content', get_post_format()); ?>
-				
-		<?php endwhile; ?>
 
-			</div>
-		<div id="load-more-wrap">
-			<?php //echo paginate_links(); ?>
-			<button id="fetch-older-posts-button">Načíst starší</button>
-		</div>
-		</div>
 
-		<script type="text/javascript">
-			el = document.getElementById("fetch-older-posts-button");
 
-			function renderNewPost(postData) {
-				var newPostHTML = "<article id=\"" + postData.id + "\" class=\"post-wrap clear-both\"><a class=\"link-overlay\" href=\"";
-				newPostHTML += postData.link;
-				newPostHTML += "\" rel=\"bookmark\"></a>";
-
-				if(postData._links['wp:featuredmedia']) {
-
-					newPostHTML += "<img src=\"" + postData._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url + "\" class=\"attachment-post-thumbnail size-post-thumbnail wp-post-image\">";
-				}
-
-				newPostHTML += "<h2>" + postData.title.rendered + "</h2>";
-
-				newPostHTML += "</article>";
-
-				console.log("new post added: " + newPostHTML);
-
-				return newPostHTML;
-			}
-
-			function renderNewPageOfPosts(posts) {
-				//console.log(posts);
-
-				let newPageHTML = "<div class=\"single-page-of-posts\">";
-
-				for (var i = 0; i < posts.length; i++) 
-				{
-					newPageHTML += renderNewPost(posts[i]);
-				}	
-
-				newPageHTML += "</div>";
-
-				const postsPagesWrapEl = document.getElementById("posts-wrap");
-				postsPagesWrapEl.innerHTML += newPageHTML;
-
-				console.log("got to the end!");
-			}
-
-			function fetchOlderPosts()
-			{
-				fetch('http://192.168.1.190/zs-hroznova/wp-json/wp/v2/posts?_embed')
-				.then(function(response) {
-					return response.json();
-				})
-				.then(function(responseJSON) {
-					renderNewPageOfPosts(responseJSON);
-				});
-
-			}
-
-			el.addEventListener("click", fetchOlderPosts);
-		</script>
-		
-		<?php else : ?>
-		<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
-		<!-- Stop the loop -->
-		<?php endif; ?>
-
-		<!-- List agenda -->
-		<?php require_once('template-parts/front-page/agenda-list.php') ?>
-
-<?php get_footer();?>

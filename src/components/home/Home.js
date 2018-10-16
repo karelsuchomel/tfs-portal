@@ -5,22 +5,29 @@ import TabSwitcher from './TabSwitcher';
 import PostListing from './PostListing';
 import AgendaListing from './AgendaListing';
 
-export default class Home extends React.Component {
-	render() {
-		return(
-			<div>
-				<HeroCard />
+const Home = (props) => {
+	const isEmpty = props.posts === []
 
-				<div id="content" className="clear-both home-page">
+	return(
+		<div>
+			<HeroCard />
 
-					<TabSwitcher />
+			<div id="content" className="clear-both home-page">
 
-					<PostListing />
+				<TabSwitcher />
 
-					<AgendaListing />
+				{isEmpty
+					? (props.isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
+					: <PostListing 
+							posts={ props.posts } 
+						/>
+				}
 
-				</div>
+				<AgendaListing />
+
 			</div>
-		);
-	}
+		</div>
+	)
 }
+
+export default Home

@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title><?php bloginfo('name');?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
+
+    <!-- Windows tile graphics and RSS feed -->
+    <?php $templateURL = get_bloginfo('template_url'); ?>
+    <meta name="application-name" content="www.zshroznova.cz"/>
+    <meta name="msapplication-square70x70logo" content="<?php echo $templateURL; ?>/assets/images/ms-windows-tiles/small.jpg"/>
+    <meta name="msapplication-square150x150logo" content="<?php echo $templateURL; ?>/assets/images/ms-windows-tiles/medium.jpg"/>
+    <meta name="msapplication-wide310x150logo" content="<?php echo $templateURL; ?>/assets/images/ms-windows-tiles/wide.jpg"/>
+    <meta name="msapplication-square310x310logo" content="<?php echo $templateURL; ?>/assets/images/ms-windows-tiles/large.jpg"/>
+    <meta name="msapplication-TileColor" content="#00b04c"/>
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://www.zshroznova.cz/feed/&amp;id=1;polling-uri2=http://notifications.buildmypinnedsite.com/?feed=https://www.zshroznova.cz/feed/&amp;id=2;polling-uri3=http://notifications.buildmypinnedsite.com/?feed=https://www.zshroznova.cz/feed/&amp;id=3;polling-uri4=http://notifications.buildmypinnedsite.com/?feed=https://www.zshroznova.cz/feed/&amp;id=4;polling-uri5=http://notifications.buildmypinnedsite.com/?feed=https://www.zshroznova.cz/feed/&amp;id=5; cycle=1"/>
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -19,7 +29,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <?php wp_head(); ?>
   </head>
   <body>
     <noscript>
@@ -36,5 +46,12 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+  <?php wp_footer(); ?>
   </body>
 </html>
+
+
+
+
+
+
