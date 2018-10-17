@@ -1,32 +1,97 @@
 <?php
-//Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) )
-{
-	exit;
+/**
+ * TFS-Portal functions and definitions.
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package TFS-Portal
+ */
+
+/**
+ * TFS-Portal only works if the REST API is available
+ */
+if ( version_compare( $GLOBALS['wp_version'], '4.7', '<' ) ) {
+	require get_template_directory() . '/inc/compat-warnings.php';
+	return;
 }
 
+if ( ! defined( 'TFS_PORTAL_VERSION' ) ) {
+	define( 'TFS_PORTAL_VERSION', '0.0.1-alpha' );
+}
+
+if ( ! defined( 'TFS_PORTAL_APP' ) ) {
+	define( 'TFS_PORTAL_APP', 'tfs-portal-react' );
+}
+
+
 // import stylesheet
-function zshroznova_resources () 
+function tfs_portal_resources () 
 {
 	// main
 	wp_enqueue_style('style', get_stylesheet_uri());
 
-	// TODO you cannot include those like that, because they have changing hashes in their name.
-	// wp_register_style('main.css', get_template_directory_uri() . '/build/css/main.min.css', false, NULL, 'all' );
-	// wp_enqueue_style('main.css');
+	require_once(get_template_directory() . '/build/index.php');
 
-	// wp_register_script( 'index.js', get_template_directory_uri() . '/assets/js/main.bundle.min.js', array(), NULL, true );
-	// wp_enqueue_script( 'index.js' );
+	// Enqueue all webpack generated CSS bundles 
+	foreach ($cssBundlesArray as $i => $cssBundleURL) {
+		wp_enqueue_style( 'tfs-portal-style-bundle-' . $i, get_template_directory_uri() . '/build' . $cssBundleURL, array(), TFS_PORTAL_VERSION );
+	}
 
-	wp_localize_script( 'index.js', 'magicalData', array(
-		"nonce" => wp_create_nonce("wp_rest"),
-		"siteURL" => get_site_url()
-	));
+	foreach ($jsBundlesArray as $i => $jsBundleURL) {
+		wp_enqueue_script( TFS_PORTAL_APP . '-bundle-' . $i, get_template_directory_uri() . '/build' . $jsBundleURL, array(), TFS_PORTAL_VERSION, true );
+	}
+
+	$url = trailingslashit( home_url() );
+	$path = trailingslashit( wp_parse_url( $url )['path'] );
+
+	$front_page_slug = false;
+	$blog_page_slug = false;
+	if ( 'posts' !== get_option( 'show_on_front' ) ) {
+		$front_page_id = get_option( 'page_on_front' );
+		$front_page = get_post( $front_page_id );
+		if ( $front_page->post_name ) {
+			$front_page_slug = $front_page->post_name;
+		}
+
+		$blog_page_id = get_option( 'page_for_posts' );
+		$blog_page = get_post( $blog_page_id );
+		if ( $blog_page->post_name ) {
+			$blog_page_slug = $blog_page->post_name;
+		}
+	}
+
+	$user_id = get_current_user_id();
+
+	$foxhound_settings = sprintf(
+		'var SiteSettings = %s; var FoxhoundSettings = %s;',
+		wp_json_encode( array(
+			'endpoint' => esc_url_raw( $url ),
+			'nonce' => wp_create_nonce( 'wp_rest' ),
+		) ),
+		wp_json_encode( array(
+			'themeURL' => get_bloginfo('template_directory'),
+			'user' => $user_id,
+			'userDisplay' => $user_id ? get_the_author_meta( 'display_name', $user_id ) : '',
+			'frontPage' => array(
+				'page' => $front_page_slug,
+				'blog' => $blog_page_slug,
+			),
+			'URL' => array(
+				'base' => esc_url_raw( $url ),
+				'path' => $path,
+			),
+			'meta' => array(
+				'title' => get_bloginfo( 'name', 'display' ),
+				'description' => get_bloginfo( 'description', 'display' ),
+			),
+		) )
+	);
+	wp_add_inline_script( TFS_PORTAL_APP . '-bundle-0' , $foxhound_settings, 'before' );
 }
-add_action('wp_enqueue_scripts', 'zshroznova_resources');
+add_action('wp_enqueue_scripts', 'tfs_portal_resources');
 
 // theme setup
-function zshroznova_theme_setup()
+function tfs_portal_theme_setup()
 {
 	// navigation menus
 	register_nav_menus(array(
@@ -41,13 +106,13 @@ function zshroznova_theme_setup()
 	// add post format support
 	add_theme_support('post-formats', array('aside'));
 }
-add_action('after_setup_theme', 'zshroznova_theme_setup');
+add_action('after_setup_theme', 'tfs_portal_theme_setup');
 
 // use post's front-end styles in TinyMCE text editor
-function zshroznova_theme_add_editor_styles() {
+function tfs_portal_theme_add_editor_styles() {
 	add_editor_style( 'build/css/main.min.css' );
 }
-add_action( 'admin_init', 'zshroznova_theme_add_editor_styles' );
+add_action( 'admin_init', 'tfs_portal_theme_add_editor_styles' );
 
 // remove WordPress emojis
 require_once( get_template_directory() . '/inc/remove_wp_emoji.php');

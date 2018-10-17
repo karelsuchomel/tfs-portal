@@ -5,22 +5,27 @@ import Noon720wPng from './hero-card-images/school-noon-720w.png';
 import Noon960wPng from './hero-card-images/school-noon-960w.png';
 import Noon1920wPng from './hero-card-images/school-noon-1920w.png';
 
+// TODO remove and make it accessible as global variable
+import { themeURL } from '../../../utils/wordpress-generated-app-settings';
+
 export default class HeroImage extends React.Component {
 	render() {
+		const buildURL = themeURL + "/build";
+
 		return(
 			<picture>
 				<source 
 					media="(min-width: 571px)"
-					srcSet={ Noon960wPng + " 960w, " + Noon1920wPng + " 1920w"}
+					srcSet={ buildURL + Noon960wPng + " 960w, " + buildURL + Noon1920wPng + " 1920w"}
 					sizes="960px"
 				/>
 				<source
 					media="(max-width: 570px)"
-					srcSet={ Noon360wPng + " 360w, " + Noon720wPng + " 720w"}
+					srcSet={ buildURL + Noon360wPng + " 360w, " + buildURL + Noon720wPng + " 720w"}
 				/>
 				<img 
 					className="image-container" 
-					src={ Noon960wPng }
+					src={ buildURL + Noon960wPng }
 					alt="Fill from admin"
 				/>
 			</picture>

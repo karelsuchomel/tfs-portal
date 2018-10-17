@@ -10,6 +10,7 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
+
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 
@@ -35,7 +36,7 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 }
 
 // Note: defined here because it will be used more than once.
-const cssFilename = 'css/[name].[contenthash:8].css';
+const cssFilename = 'css/[name].css';
 
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
@@ -50,6 +51,9 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
 module.exports = {
+  externals: {
+    FoxhoundSettings: 'FoxhoundSettings'
+  },
   // Don't attempt to continue if there are any errors.
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
@@ -63,8 +67,8 @@ module.exports = {
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
-    filename: 'js/[name].[chunkhash:8].js',
-    chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -223,7 +227,7 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
+            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.ejs$/],
             options: {
               name: 'media/[name].[hash:8].[ext]',
             },
@@ -235,6 +239,11 @@ module.exports = {
     ],
   },
   plugins: [
+    // Provides external variables generated with WordPresse's function.php 
+    // in every module without importing it (will only import if it is used). 
+    // new webpack.ProvidePlugin({
+    //   blogURL: WordpressGeneratedAppSettings
+    // }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
@@ -243,21 +252,22 @@ module.exports = {
     new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
-      inject: true,
-      filename: './index.php'
+      inject: false,
+      filename: 'index.php',
       template: paths.appHtml,
-      minify: {
-        // removeComments: true,
-        // collapseWhitespace: true,
-        // removeRedundantAttributes: true,
-        // useShortDoctype: true,
-        // removeEmptyAttributes: true,
-        // removeStyleLinkTypeAttributes: true,
-        // keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
+      productionBuild: true
+      // minify: {
+      //   removeComments: true,
+      //   collapseWhitespace: true,
+      //   removeRedundantAttributes: true,
+      //   useShortDoctype: true,
+      //   removeEmptyAttributes: true,
+      //   removeStyleLinkTypeAttributes: true,
+      //   keepClosingSlash: true,
+      //   minifyJS: true,
+      //   minifyCSS: true,
+      //   minifyURLs: true,
+      // },
     }),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
