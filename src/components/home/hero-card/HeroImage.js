@@ -1,16 +1,15 @@
-import React from 'react';
+import React from 'react'
 
-import Noon360wPng from './hero-card-images/school-noon-360w.png';
-import Noon720wPng from './hero-card-images/school-noon-720w.png';
-import Noon960wPng from './hero-card-images/school-noon-960w.png';
-import Noon1920wPng from './hero-card-images/school-noon-1920w.png';
+import Noon360wPng from './hero-card-images/school-noon-360w.png'
+import Noon720wPng from './hero-card-images/school-noon-720w.png'
+import Noon960wPng from './hero-card-images/school-noon-960w.png'
+import Noon1920wPng from './hero-card-images/school-noon-1920w.png'
 
-// TODO remove and make it accessible as global variable
-import { themeURL } from '../../../utils/wordpress-generated-app-settings';
+import WPSettings from 'WPSettings'
 
 export default class HeroImage extends React.Component {
 	render() {
-		const buildURL = themeURL + "/build";
+		const buildURL = WPSettings.themeURL + "/build";
 
 		return(
 			<picture>

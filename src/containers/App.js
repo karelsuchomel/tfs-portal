@@ -8,7 +8,7 @@ import NavigationTopBar from '../components/navigation-top-bar/NavigationTopBar.
 import NavigationSideBar from '../components/navigation-side-bar/NavigationSideBar.js'
 import Home from '../components/home/Home.js'
 import Single from '../components/post/Single.js'
-import blogURL from '../utils/wordpress-generated-app-settings'
+import WPSettings from 'WPSettings'
 
 class App extends Component {
 	static propTypes = {
@@ -66,13 +66,13 @@ class App extends Component {
           }
 
 					<Switch>
-						<Route exact path={blogURL} >
+						<Route exact path={WPSettings.blogURL} >
 							<Home
 								posts={posts} 
 								isFetching={isFetching}
 							/>
 						</Route>
-						<Route path={ `${blogURL}/single` } component={ Single } />
+						<Route path={ `${WPSettings.blogURL}/single` } component={ Single } />
 					</Switch>
 					
 				</div>

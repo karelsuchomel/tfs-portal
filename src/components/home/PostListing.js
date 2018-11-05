@@ -12,6 +12,7 @@ const PostListing = (props) => (
 					link={post.link}
 					title={post.title.rendered}
 					excerpt={post.excerpt.rendered}
+					featuredImageURL={post._embedded['wp:featuredmedia'] ? post._embedded['wp:featuredmedia'][0].source_url : null}
 				/>
 			)) }
 		</div>

@@ -30,7 +30,7 @@ function tfs_portal_resources ()
 	// main
 	wp_enqueue_style('style', get_stylesheet_uri());
 
-	require_once(get_template_directory() . '/build/index.php');
+	require get_template_directory() . '/build/index.php';
 
 	// Enqueue all webpack generated CSS bundles 
 	foreach ($cssBundlesArray as $i => $cssBundleURL) {
@@ -95,8 +95,8 @@ function tfs_portal_theme_setup()
 {
 	// navigation menus
 	register_nav_menus(array(
-	  'menu-top-bar' => __('Horní lišta'),
-	  'menu-side-list' => __('Boční seznam'),
+	  'menu-top-bar' => __('top-bar-menu'),
+	  'menu-side-list' => __('side-bar-menu'),
 	));
 
 	// add featured image support
@@ -115,4 +115,10 @@ function tfs_portal_theme_add_editor_styles() {
 add_action( 'admin_init', 'tfs_portal_theme_add_editor_styles' );
 
 // remove WordPress emojis
-require_once( get_template_directory() . '/inc/remove_wp_emoji.php');
+require get_template_directory() . '/inc/remove_wp_emoji.php';
+
+// Include extra functionality.
+require get_template_directory() . '/inc/load-menu.php';
+require get_template_directory() . '/inc/load-data.php';
+require get_template_directory() . '/inc/permalinks.php';
+require get_template_directory() . '/inc/customizer.php';

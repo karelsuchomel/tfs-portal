@@ -1,3 +1,5 @@
+import WPSettings from 'WPSettings'
+
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT'
@@ -27,7 +29,7 @@ export const receivePosts = (subreddit, json) => ({
 
 const fetchPosts = subreddit => dispatch => {
   dispatch(requestPosts(subreddit))
-  return fetch(`http://localhost/zs-hroznova/wp-json/wp/v2/posts`)
+  return fetch( WPSettings.blogURL + 'wp-json/wp/v2/posts?_embed' )
     .then(response => response.json())
     .then(json => dispatch(receivePosts(subreddit, json)))
 }

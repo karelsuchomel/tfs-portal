@@ -41,14 +41,14 @@
 // Search form
 //
 
-// input type="checkbox" workaround
+// input type="checkbox" CSS toggle
 input[type=checkbox]#search-box-toggle
 	display: none
 
 	&:checked + #searchform .search-field-wrapper #search-field
 		max-width: 300px
 		width: 300px
-		padding: 0 17px
+		background-color: white
 
 	&:checked + #searchform #show-search-toggle
 		display: none
@@ -78,15 +78,14 @@ input[type=checkbox]#search-box-toggle
 		overflow: hidden
 
 		#search-field
-			max-width: 0
-			width: 0
-			padding: 0
+			width: 300px
+			padding: 0 17px
 			border: 0
 			border-top-left-radius: 3px
 			border-bottom-left-radius: 3px
 			margin: 10px 0
 			line-height: 30px
-			background-color: rgba(255,255,255,0.85)
+			background-color: rgba(255,255,255,0.65)
 			transition: width 0.3s, padding 0.3s, max-width 0.3s, background-color 0.3s
 
 			font-size: 14px
