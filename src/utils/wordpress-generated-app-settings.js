@@ -1,11 +1,12 @@
-import FoxhoundSettings from 'FoxhoundSettings'
+import TFSWordpressSettings from 'TFSWordpressSettings'
+import SiteSettings from 'SiteSettings'
 
-const path = FoxhoundSettings.URL.path || '/'
-const themeURL = FoxhoundSettings.themeURL
+const path = TFSWordpressSettings.URL.path || '/'
+const themeURL = TFSWordpressSettings.themeURL
 
 let blogURL, frontPageRoute
-if ( FoxhoundSettings.frontPage.page ) {
-  blogURL = path + 'page/' + FoxhoundSettings.frontPage.blog + '/'
+if ( TFSWordpressSettings.frontPage.page ) {
+  blogURL = path + 'page/' + TFSWordpressSettings.frontPage.blog + '/'
   // const FrontPageComponent = props => (
   //   <SinglePage slug={ FoxhoundSettings.frontPage.page } { ...props } />
   // );
@@ -15,5 +16,5 @@ if ( FoxhoundSettings.frontPage.page ) {
   frontPageRoute = null
 }
 
-const WPSettings = { blogURL: blogURL, themeURL: themeURL}
+const WPSettings = { blogURL: SiteSettings.endpoint, themeURL: themeURL}
 export default WPSettings

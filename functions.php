@@ -30,16 +30,9 @@ function tfs_portal_resources ()
 	// main
 	wp_enqueue_style('style', get_stylesheet_uri());
 
-	require get_template_directory() . '/build/index.php';
+	wp_enqueue_style( 'tfs-portal-style', get_template_directory_uri() . '/build/css/bundle.css', array(), TFS_PORTAL_VERSION );
 
-	// Enqueue all webpack generated CSS bundles 
-	foreach ($cssBundlesArray as $i => $cssBundleURL) {
-		wp_enqueue_style( 'tfs-portal-style-bundle-' . $i, get_template_directory_uri() . '/build' . $cssBundleURL, array(), TFS_PORTAL_VERSION );
-	}
-
-	foreach ($jsBundlesArray as $i => $jsBundleURL) {
-		wp_enqueue_script( TFS_PORTAL_APP . '-bundle-' . $i, get_template_directory_uri() . '/build' . $jsBundleURL, array(), TFS_PORTAL_VERSION, true );
-	}
+	wp_enqueue_script( TFS_PORTAL_APP . '-bundle-js', get_template_directory_uri() . '/build/js/bundle.js', array(), TFS_PORTAL_VERSION, true );
 
 	$url = trailingslashit( home_url() );
 	$path = trailingslashit( wp_parse_url( $url )['path'] );
@@ -62,8 +55,8 @@ function tfs_portal_resources ()
 
 	$user_id = get_current_user_id();
 
-	$foxhound_settings = sprintf(
-		'var SiteSettings = %s; var FoxhoundSettings = %s;',
+	$tfs_portal_settings = sprintf(
+		'var SiteSettings = %s; var TFSWordpressSettings = %s;',
 		wp_json_encode( array(
 			'endpoint' => esc_url_raw( $url ),
 			'nonce' => wp_create_nonce( 'wp_rest' ),
@@ -86,7 +79,7 @@ function tfs_portal_resources ()
 			),
 		) )
 	);
-	wp_add_inline_script( TFS_PORTAL_APP . '-bundle-0' , $foxhound_settings, 'before' );
+	wp_add_inline_script( TFS_PORTAL_APP . '-bundle-js' , $tfs_portal_settings, 'before' );
 }
 add_action('wp_enqueue_scripts', 'tfs_portal_resources');
 
