@@ -29,8 +29,8 @@ export const receivePosts = (subreddit, json) => ({
 
 const fetchPosts = subreddit => dispatch => {
   dispatch(requestPosts(subreddit))
-  console.log(WPSettings.blogURL + 'wp-json/wp/v2/posts?_embed')
-  return fetch(WPSettings.blogURL + 'wp-json/wp/v2/posts?_embed')
+  console.log(WPSettings.portalBase + 'wp-json/wp/v2/posts?_embed')
+  return fetch(WPSettings.portalBase + 'wp-json/wp/v2/posts?_embed')
     .then(response => response.json())
     .then(json => dispatch(receivePosts(subreddit, json)))
 }

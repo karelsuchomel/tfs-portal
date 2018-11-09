@@ -30,7 +30,7 @@ export default class InfoPanel extends React.Component {
 					</div>
 				</div>
 				<div className="erb-container">
-					<img src={ SigilBrnoPng } alt="znak města Brna" />
+					<img src={ buildURL + SigilBrnoPng } alt="znak města Brna" />
 					<div className="tooltip">
 						Pilotní&nbsp;škola&nbsp;projektu&nbsp;
 						<br/>

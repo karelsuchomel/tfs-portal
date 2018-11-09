@@ -42,7 +42,7 @@ module.exports = {
 						loader: 'file-loader',
 						exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.ejs$/],
 						options: {
-							name: 'media/[name].[hash:8].[ext]',
+							name: '/media/[name].[hash:8].[ext]',
 						},
 					}
 				]
