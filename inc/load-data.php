@@ -33,7 +33,7 @@ class TFS_Portal_LoadData {
 	 */
 	public function print_data() {
 		$menu_data = sprintf(
-			'var FoxhoundData = %s;',
+			'var TFSPortalData = %s;',
 			$this->add_json_data()
 		);
 		wp_add_inline_script( TFS_PORTAL_APP, $menu_data, 'before' );

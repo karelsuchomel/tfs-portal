@@ -59,20 +59,18 @@ class App extends Component {
 					<div id="side-list-fixed-background-mobile"></div>
 					<div id="dimmer-content"></div>
 
-					{!isFetching &&
-            <button onClick={this.handleRefreshClick}>
-              Refresh
-            </button>
-          }
-
 					<Switch>
-						<Route exact path={WPSettings.blogURL} >
+						<Route exact path={WPSettings.portalPath} >
 							<Home
 								posts={posts} 
 								isFetching={isFetching}
 							/>
 						</Route>
-						<Route path={ `${WPSettings.blogURL}/single` } component={ Single } />
+						<Route path={ `{WPSettings.portalPath}/single` } >
+              <Single
+                isFetching={isFetching}
+              />
+            </Route>
 					</Switch>
 					
 				</div>

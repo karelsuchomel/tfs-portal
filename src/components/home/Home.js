@@ -19,7 +19,8 @@ const Home = (props) => {
 				{isEmpty
 					? (props.isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
 					: <PostListing 
-							posts={ props.posts } 
+							posts={props.posts} 
+							isFetching={props.isFetching}
 						/>
 				}
 

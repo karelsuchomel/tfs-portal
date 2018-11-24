@@ -16,6 +16,13 @@ const PostListing = (props) => (
 				/>
 			)) }
 		</div>
+
+		{!isFetching &&
+      <button onClick={this.handleRefreshClick}>
+        Refresh
+      </button>
+    }
+		
 		<div id="load-more-wrap">
 			 <button id="fetch-older-posts-button">Načíst starší</button>
 		</div>

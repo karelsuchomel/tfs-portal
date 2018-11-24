@@ -20,7 +20,7 @@ if ( ! defined( 'TFS_PORTAL_VERSION' ) ) {
 }
 
 if ( ! defined( 'TFS_PORTAL_APP' ) ) {
-	define( 'TFS_PORTAL_APP', 'tfs-portal-react' );
+	define( 'TFS_PORTAL_APP', 'tfs-portal-react-bundle-js' );
 }
 
 
@@ -32,7 +32,7 @@ function tfs_portal_resources ()
 
 	wp_enqueue_style( 'tfs-portal-style', get_template_directory_uri() . '/build/css/bundle.css', array(), TFS_PORTAL_VERSION );
 
-	wp_enqueue_script( TFS_PORTAL_APP . '-bundle-js', get_template_directory_uri() . '/build/js/bundle.js', array(), TFS_PORTAL_VERSION, true );
+	wp_enqueue_script( TFS_PORTAL_APP, get_template_directory_uri() . '/build/js/bundle.js', array(), TFS_PORTAL_VERSION, true );
 
 	$url = trailingslashit( home_url() );
 	$path = trailingslashit( wp_parse_url( $url )['path'] );
@@ -79,7 +79,7 @@ function tfs_portal_resources ()
 			),
 		) )
 	);
-	wp_add_inline_script( TFS_PORTAL_APP . '-bundle-js' , $tfs_portal_settings, 'before' );
+	wp_add_inline_script( TFS_PORTAL_APP , $tfs_portal_settings, 'before' );
 }
 add_action('wp_enqueue_scripts', 'tfs_portal_resources');
 
@@ -112,6 +112,10 @@ require get_template_directory() . '/inc/remove_wp_emoji.php';
 
 // Include extra functionality.
 require get_template_directory() . '/inc/load-menu.php';
-require get_template_directory() . '/inc/load-data.php';
+
+// Not sure if this actually speeds up the initial load that much.
+// Seems like wasted at least 90Kb of javascript code
+//require get_template_directory() . '/inc/load-data.php';
+
 require get_template_directory() . '/inc/permalinks.php';
 require get_template_directory() . '/inc/customizer.php';
