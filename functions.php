@@ -107,6 +107,11 @@ function tfs_portal_theme_add_editor_styles() {
 }
 add_action( 'admin_init', 'tfs_portal_theme_add_editor_styles' );
 
+// disable Guttemberg - disable for posts
+add_filter('use_block_editor_for_post', '__return_false', 10);
+// disable for post types
+add_filter('use_block_editor_for_post_type', '__return_false', 10);
+
 // remove WordPress emojis
 require get_template_directory() . '/inc/remove_wp_emoji.php';
 

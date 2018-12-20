@@ -3,6 +3,7 @@ import React from 'react'
 import ContactIconSvg from './contact-icon.svg'
 import SigilBrnoPng from './znak-brno.png'
 import SigilBrnoStredPng from './znak-brno-stred.png'
+import arrowIcon from './arrow-left-white.svg'
 
 import WPSettings from 'WPSettings'
 
@@ -37,7 +38,9 @@ export default class InfoPanel extends React.Component {
 						MMB Angličtina&nbsp;od&nbsp;1.&nbsp;třídy
 					</div>
 				</div>
-				<label id="close-expanded-info-rollet-toggle" htmlFor="mobile-tooltip-toggle"></label>
+				<label id="close-expanded-info-rollet-toggle" htmlFor="mobile-tooltip-toggle">
+					<img src={ buildURL + arrowIcon } />
+				</label>
 			</div>
 		);
 	}
