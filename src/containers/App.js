@@ -58,9 +58,9 @@ class App extends Component {
 					<NavigationSideBar />
 					<div id="side-list-fixed-background-mobile"></div>
 					<div id="dimmer-content"></div>
-
-					<Switch>
-						<Route exact path={WPSettings.portalPath} >
+          
+          <Switch>
+            <Route exact path={WPSettings.portalPath} >
 							<Home
 								posts={posts} 
 								isFetching={isFetching}

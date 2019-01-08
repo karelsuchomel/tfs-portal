@@ -1,14 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const SingleArticle = (props) => (
 	<article className='post-wrap clear-both'>
-		<a 
+		<NavLink 
 			className='link-overlay'
-			href={props.link}
+			to={props.link}
 			rel='bookmark' 
 			title={props.title}
-		></a>
+		></NavLink>
 		{ props.featuredImageURL ?
 			<img 
 				src={ props.featuredImageURL } 
