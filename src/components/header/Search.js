@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ClearFieldIcon from './clear-field.svg';
-import magnifierIcon from './magnifier-icon.svg'
 import WPSettings from 'WPSettings'
 
 export default class Search extends React.Component {
@@ -18,7 +17,7 @@ export default class Search extends React.Component {
 					</div>
 				<label id="show-search-toggle" htmlFor="search-box-toggle"></label>
 				<button type="submit" id="searchsubmit">
-					<img src={ buildURL + magnifierIcon } />
+					Hledat
 				</button>
 				</div>
 			</div>

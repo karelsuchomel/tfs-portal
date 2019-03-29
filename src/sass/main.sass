@@ -5,7 +5,7 @@ html
 html, body
 	padding: 0
 	margin: 0
-	font-family: 'Open Sans', sans-serif
+	font-family: $basic-font
 	font-size: 14px
 
 body
@@ -25,7 +25,7 @@ body
 	padding: $universal-padding
 	z-index: 1
 
-#content.home-page
+.home.blog #content
 	padding-right: 0px
 
 // @media screen and(max-width: $content-max-width)
@@ -36,15 +36,15 @@ body
 		width: 100%
 
 @media screen and(max-width: 720px)
-	#content, #content.home-page
+	#content, .home.blog #content
 		padding-right: $universal-padding
 
 @media screen and(max-width: 640px)
-	#content, #content.home-page
+	#content, .home.blog #content
 		padding: $universal-padding 15px
 
-@media screen and(max-width: 470px)
+@media screen and(max-width: 570px)
 	body
 		background: white
-	#content, #content.home-page
+	#content, .home.blog #content
 		padding: ($universal-padding / 2) 0px

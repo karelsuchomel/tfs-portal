@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit } from '../actions'
+import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit } from '../actions/actionCreators.js'
 
-import NavigationTopBar from '../components/navigation-top-bar/NavigationTopBar.js'
+import Header from '../components/header/Header.js'
 import NavigationSideBar from '../components/navigation-side-bar/NavigationSideBar.js'
 import Home from '../components/home/Home.js'
 import Single from '../components/post/Single.js'
@@ -50,7 +50,7 @@ class App extends Component {
 			<div className="app-wrapper">
 
 				<input name="toggle-menu" id="toggle-menu-checkbox" type="checkbox" />
-				<NavigationTopBar />
+				<Header />
 
 				<div id="content-wrap" className="clear-both">
 

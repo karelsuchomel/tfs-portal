@@ -1,7 +1,17 @@
 @media screen and(max-width: 960px)
-	#top-bar-menu-container	#logo-wrapper
-		margin-left: 5px
-		width: 162px
+	#top-bar-menu-container
+		max-width: 100%
+		display: flex
+
+		> *
+			flex-shrink: 0
+
+		> #menu-top-bar-list-container
+			flex-shrink: 1
+
+		#logo-wrapper
+			margin-left: 5px
+			width: 162px
 
 	.icon-hamburger-menu
 		display: block
@@ -31,7 +41,7 @@
 			text-align: center
 
 		&:checked + #searchform .search-field-wrapper
-			width: calc(100% - 50px)
+			width: calc(100% - 98px)
 			box-sizing: border-box
 
 		&:checked + #searchform .search-field-wrapper #search-field
@@ -39,7 +49,7 @@
 			padding: 0 17px
 
 		&:checked + #searchform #searchsubmit
-			width: 50px
+			width: 98px
 			box-sizing: border-box
 
 		&:checked + #searchform #show-search-toggle
@@ -49,12 +59,7 @@
 			display: inline-block
 
 	#searchform .search-field-wrapper #search-field
-			max-width: 0
-			padding: 0
 			transition: none
-
-	#searchform  #show-search-toggle
-		display: block
 
 
 	//
@@ -77,7 +82,7 @@
 	#searchform 
 		#searchsubmit
 			font-size: 0
-			padding: 16px 10px
+			padding: 0px 10px
 
 @media screen and(max-width: 580px)
 	#searchform
@@ -107,7 +112,7 @@
 			padding: 40px 10px 0
 
 	#menu-top-bar-list-container
-		.menu
+		ul
 
 			li
 				a

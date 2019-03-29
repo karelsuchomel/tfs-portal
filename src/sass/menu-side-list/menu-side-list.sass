@@ -1,12 +1,17 @@
-nav#side-list
+@import "../mixins"
+
+//
+// Menu side list
+//
+
+#side-list
+	@include unselectable
+
 	position: relative
 	width: 220px
 	float: left
 	min-height: calc(100vh - 60px) !important
 	box-sizing: border-box
-	border-left: 1px solid rgba(0,0,0,0.15)
-	border-right: 1px solid rgba(0,0,0,0.15)
-	background: white
 
 	#menu-side-bar-list-container .menu
 		list-style: none
@@ -15,15 +20,7 @@ nav#side-list
 
 		> li
 			display: block
-			border-top: 1px solid rgba(0,0,0,0.15)
-			box-shadow: 0px 1px rgba(0,0,0,0.15)
-			background: white
 			overflow: hidden
-
-			&:hover
-				a
-					&:after
-						left: -11px
 
 			a
 				position: relative
@@ -32,26 +29,12 @@ nav#side-list
 				padding: 10px 15px
 				color: $base-color-dark
 				font-size: 13px
-				font-weight: 600
-				line-height: 20px
+				font-weight: 400
+				line-height: 16px
 
-				&:active
+				&:hover, &:active, &:focus
 					transition: 0s
 					background: hsl(0,0,85)
-
-
-				&:after
-					transition: 0.2s
-					content: ""
-					position: absolute
-					display: inline-block
-					left: -20px
-					top: calc(50% - 10px)
-					//top: 10px
-					width: 20px
-					height: 20px
-					background: $base-color
-					border-radius: 50%
 
 			a::first-letter
 				text-transform: uppercase
@@ -71,7 +54,6 @@ nav#side-list
 				height: 0px
 
 				li
-					border-top: 0px
 					box-shadow: none
 					position: relative
 
@@ -100,8 +82,5 @@ nav#side-list
 	top: 0
 	bottom: 0
 	width: 218px
-	border-left: 1px solid #DDD
-	border-right: 1px solid #DDD
-	background: white
 
 @import "menu-side-list-responsive"
