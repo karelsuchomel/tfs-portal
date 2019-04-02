@@ -6,7 +6,7 @@ export default class NavigationSideBar extends React.Component {
 			<nav id="side-list">
 				<div id="menu-side-bar-list-container" className="menu-bocni-seznam-container">
 					<ul id="menu-bocni-seznam" className="menu">
-						<li id="menu-item-57" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-57"><a>Základní ifnformace</a>
+						<li id="menu-item-57" className="collapsed menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-57"><a>Základní ifnformace</a>
 							<ul className="sub-menu">
 								<li id="menu-item-79" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-79"><a href="http://192.168.1.190/zs-hroznova/zakladni-ifnformace/">Základní ifnformace</a></li>
 								<li id="menu-item-88" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-88"><a href="http://192.168.1.190/zs-hroznova/proc-nase-skola/">Proč naše škola</a></li>

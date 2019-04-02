@@ -10,8 +10,7 @@ const AsideArticle = (props) => {
 			title={title}
 			></a>
 			<h2 className="aside-headline">
-				{title}
-				|
+				{title}&nbsp; | &nbsp;
 				<span className="one-line-excerpt">
 					{excerpt}
 				</span>
