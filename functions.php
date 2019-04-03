@@ -34,6 +34,19 @@ function tfs_portal_resources ()
 
 	wp_enqueue_script( TFS_PORTAL_APP, get_template_directory_uri() . '/build/js/bundle.js', array(), TFS_PORTAL_VERSION, true );
 
+	// Generate CSS string with initial CSS variables
+	$cssVariables = sprintf(
+		'.css-variables {
+			--base-color: %s;
+			--highlight-color: %s;
+		}', 
+			get_option('base_color'),
+			get_option('highlight_color')
+	);
+
+	wp_add_inline_style( 'style', $cssVariables );
+
+	// Generate JSON data with initial portal settings
 	$url = trailingslashit( home_url() );
 	$path = trailingslashit( wp_parse_url( $url )['path'] );
 
@@ -56,12 +69,10 @@ function tfs_portal_resources ()
 	$user_id = get_current_user_id();
 
 	$tfs_portal_settings = sprintf(
-		'var SiteSettings = %s; var TFSWordpressSettings = %s;',
+		'var SiteSettings = %s;',
 		wp_json_encode( array(
 			'endpoint' => esc_url_raw( $url ),
 			'nonce' => wp_create_nonce( 'wp_rest' ),
-		) ),
-		wp_json_encode( array(
 			'themeURL' => get_bloginfo('template_directory'),
 			'user' => $user_id,
 			'userDisplay' => $user_id ? get_the_author_meta( 'display_name', $user_id ) : '',
@@ -124,3 +135,6 @@ require get_template_directory() . '/inc/load-menu.php';
 
 require get_template_directory() . '/inc/permalinks.php';
 require get_template_directory() . '/inc/customizer.php';
+
+// Setup administration
+require get_template_directory() . '/inc/admin/index.php';

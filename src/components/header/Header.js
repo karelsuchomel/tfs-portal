@@ -8,6 +8,7 @@ export default class NavigationTopBar extends React.Component {
 	render() {
 		return(
 			<nav id="top-bar-container">
+				<input name="toggle-menu" id="toggle-menu-checkbox" type="checkbox" />
 				<div id="top-bar-menu-container" className="clear-both">
 					<label htmlFor="toggle-menu-checkbox" className="icon-hamburger-menu">
 						<div className="menu-icon-container">

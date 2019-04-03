@@ -1,9 +1,6 @@
 import React from 'react'
 
-import Noon360wPng from './hero-card-images/school-noon-360w.png'
-import Noon720wPng from './hero-card-images/school-noon-720w.png'
-import Noon960wPng from './hero-card-images/school-noon-960w.png'
-import Noon1920wPng from './hero-card-images/school-noon-1920w.png'
+import placeholderImage from './hero-card-images/school-in-forest-wide-3-1.png'
 
 import WPSettings from 'WPSettings'
 
@@ -15,16 +12,16 @@ export default class HeroImage extends React.Component {
 			<picture>
 				<source 
 					media="(min-width: 571px)"
-					srcSet={ buildURL + Noon960wPng + " 960w, " + buildURL + Noon1920wPng + " 1920w"}
+					srcSet={ buildURL + placeholderImage + " 960w, " + buildURL + placeholderImage + " 1920w"}
 					sizes="960px"
 				/>
 				<source
 					media="(max-width: 570px)"
-					srcSet={ buildURL + Noon360wPng + " 360w, " + buildURL + Noon720wPng + " 720w"}
+					srcSet={ buildURL + placeholderImage + " 360w, " + buildURL + placeholderImage + " 720w"}
 				/>
 				<img 
 					className="image-container" 
-					src={ buildURL + Noon960wPng }
+					src={ buildURL + placeholderImage }
 					alt="Fill from admin"
 				/>
 			</picture>

@@ -3,7 +3,7 @@
  * Pre-load the first page's query response as a JSON object
  * Skips the need for an API query on the initial load of a page
  *
- * @package Foxhound
+ * @package TFS-Portal
  */
 
 /**

@@ -14,7 +14,8 @@
 	width: 100%
 	position: relative
 	z-index: 6
-	background: $base-color
+	background-color: $base-color
+	background-color: var(--base-color)
 
 #top-bar-menu-container
 	max-width: $content-max-width
@@ -28,6 +29,7 @@
 		display: block
 		float: left
 		background-color: $base-color
+		background-color: var(--base-color)
 		width: 220px
 		padding: 8px 0px
 		cursor: pointer
@@ -40,6 +42,7 @@
 		&:hover
 			transition: 0.2s
 			background-color: $base-color-light
+			background-color: var(--highlight-color)
 		&:active
 			img
 				transform: scale(0.95)
@@ -124,6 +127,7 @@ input[type=checkbox]#search-box-toggle
 
 		&:hover + #searchsubmit
 			background-color: $base-color-light
+			background-color: var(--highlight-color)
 
 	#searchsubmit
 		float: left
@@ -131,6 +135,7 @@ input[type=checkbox]#search-box-toggle
 		position: relative
 		padding: 0px 15px
 		background-color: $base-color
+		background-color: var(--base-color)
 		transition: background-color 0.15s
 
 		color: white
@@ -139,6 +144,7 @@ input[type=checkbox]#search-box-toggle
 
 		&:hover
 			background-color: $base-color-light
+			background-color: var(--highlight-color)
 
 			&:after
 				transform: scale(1,1)
@@ -146,6 +152,7 @@ input[type=checkbox]#search-box-toggle
 
 		&:active
 			background: $base-color-light
+			background-color: var(--highlight-color)
 
 		&:before
 			content: ""
@@ -189,6 +196,7 @@ input[type=checkbox]#search-box-toggle
 			
 			> a
 				background: $base-color
+				background: var(--base-color)
 				display: block
 				padding: 0px 15px
 				color: white
@@ -202,6 +210,7 @@ input[type=checkbox]#search-box-toggle
 
 				&:active
 					background: $base-color-light
+					background-color: var(--highlight-color)
 
 				&:after
 					content: ""

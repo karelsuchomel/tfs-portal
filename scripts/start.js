@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
 	externals: {
-		TFSWordpressSettings: 'TFSWordpressSettings',
 		SiteSettings: 'SiteSettings'
 	},
 	mode: 'development',

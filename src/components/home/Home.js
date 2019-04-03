@@ -10,23 +10,26 @@ const Home = (props) => {
 
 	return(
 		<div>
-			<HeroCard />
+			{ false && 
+				(
+					<div>
+						<HeroCard />
 
-			<div id="content" className="clear-both home-page">
+						<div id="content" className="clear-both home-page">
 
-				<TabSwitcher />
+							<TabSwitcher />
 
-				{isEmpty
-					? (props.isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-					: <PostListing 
-							posts={props.posts} 
-							isFetching={props.isFetching}
-						/>
-				}
+							<PostListing 
+								posts={props.posts} 
+								isFetching={props.isFetching}
+							/>
 
-				<AgendaListing />
+							<AgendaListing />
 
-			</div>
+						</div>
+					</div>
+				)
+			}
 		</div>
 	)
 }
