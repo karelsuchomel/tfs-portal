@@ -18,12 +18,13 @@ export default class NavigationTopBar extends React.Component {
 						</div>
 						<span>Navigace</span>
 					</label>
+
 					<SiteIdentity />
+
+					<MenuItems />
 
 					<input id="search-box-toggle" type="checkbox" />
 					<Search />
-
-					<MenuItems />
 					
 				</div>
 			</nav>
