@@ -123,18 +123,11 @@ add_filter('use_block_editor_for_post', '__return_false', 10);
 // disable for post types
 add_filter('use_block_editor_for_post_type', '__return_false', 10);
 
-// remove WordPress emojis
-require get_template_directory() . '/inc/remove_wp_emoji.php';
-
-// Include extra functionality.
-require get_template_directory() . '/inc/load-menu.php';
-
-// Not sure if this actually speeds up the initial load that much.
-// Seems like wasted at least 90Kb of javascript code
-//require get_template_directory() . '/inc/load-data.php';
-
-require get_template_directory() . '/inc/permalinks.php';
-require get_template_directory() . '/inc/customizer.php';
-
 // Setup administration
 require get_template_directory() . '/inc/admin/index.php';
+
+// Setting up routing for the JS router
+require get_template_directory() . '/inc/permalinks.php';
+
+// remove WordPress emojis
+require get_template_directory() . '/inc/remove_wp_emoji.php';
