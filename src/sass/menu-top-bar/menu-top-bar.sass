@@ -4,10 +4,6 @@
 // Top bar
 //
 
-//
-// Logo
-//
-
 #top-bar-container
 	@include unselectable
 
@@ -16,6 +12,7 @@
 	z-index: 6
 	background-color: $base-color
 	background-color: var(--base-color)
+	background-color: #e5e5e5
 
 #top-bar-menu-container
 	max-width: $content-max-width
@@ -25,13 +22,17 @@
 		&:focus
 			outline: 0
 
+//
+// Logo
+//
+
+#top-bar-menu-container
 	#logo-wrapper
 		display: block
 		float: left
+		padding: 15px 20px
 		background-color: $base-color
 		background-color: var(--base-color)
-		width: 220px
-		padding: 8px 0px
 		cursor: pointer
 		img
 			max-height: 30px
@@ -39,13 +40,9 @@
 			max-width: 162px
 			margin: 0 auto
 
-		&:hover
-			transition: 0.2s
+		&:active
 			background-color: $base-color-light
 			background-color: var(--highlight-color)
-		&:active
-			img
-				transform: scale(0.95)
 
 //
 // Search form
@@ -65,7 +62,7 @@ input[type=checkbox]#search-box-toggle
 		border: 1px solid rgba(255,255,255,0.85)
 		border-top-right-radius: 3px
 		border-bottom-right-radius: 3px
-		margin: 8px 0px
+		margin: 15px 0
 		line-height: 28px
 		padding: 0 10px
 		// reset for mobile minimized button
@@ -77,8 +74,8 @@ input[type=checkbox]#search-box-toggle
 
 #searchform
 	float: left
-	padding-left: 34px
 	position: relative
+	padding-left: 10px
 
 	.search-field-wrapper
 		position: relative
@@ -86,83 +83,56 @@ input[type=checkbox]#search-box-toggle
 		overflow: hidden
 
 		#search-field
-			max-width: 250px
-			width: 250px
+			float: left
+			width: 200px
+			max-width: 200px
 			padding: 0 8px
+			margin: 15px 0
 			border: 0
 			border-top-left-radius: 3px
 			border-bottom-left-radius: 3px
-			margin: 8px 0
-			line-height: 30px
-			background-color: rgba(0,0,0,0.2)
+			background-color: #E9E8E7
+			transition: max-width 0.2s, width 0.2s
 
 			font-size: 14px
-			color: #222
+			color: #444
+			line-height: 30px
 
 			&:hover, &:active
 				background-color: white
 
 			&:focus
 				background-color: white
-
-		#hide-search-toggle
-			position: absolute
-			top: 10px
-			right: 0px
-			padding: 5px 4px 0px
-			width: 20px
-			cursor: pointer
-			line-height: 19px
-
-	#show-search-toggle
-		position: absolute
-		top: 0
-		right: 0
-		bottom: 0
-		left: 0
-		z-index: 2
-		cursor: pointer
-
-		&:hover + #searchsubmit
-			background-color: $base-color-light
-			background-color: var(--highlight-color)
+				max-width: 300px
+				width: 300px
 
 	#searchsubmit
 		float: left
-		cursor: pointer
-		position: relative
-		padding: 0px 15px
-		background-color: $base-color
-		background-color: var(--base-color)
+		padding: 7px 8px
+		margin: 15px 0
+		border: 0
+		border-top-right-radius: 3px
+		border-bottom-right-radius: 3px
+		background-color: #E9E8E7
 		transition: background-color 0.15s
 
-		color: white
+		color: #444
 		font-size: 14px
-		line-height: 46px
+		line-height: 30px
 
-		&:hover
-			background-color: $base-color-light
-			background-color: var(--highlight-color)
+		&:hover, &:active
+			background-color: white
 
-			&:after
-				transform: scale(1,1)
-				background-color: white
-
-		&:active
-			background: $base-color-light
-			background-color: var(--highlight-color)
-
-		&:before
-			content: ""
+		img
 			display: block
 			float: left
-			width: 20px
-			height: 46px
+			width: 16px
+			height: 16px
 			margin-right: 4px
-			background: url('/images/magnifier-icon.svg') no-repeat
-				size: 18px 18px
-				repeat: no-repeat
-				position: 50% 50%
+			cursor: pointer
+
+	#show-search-toggle
+		display: none
 
 //
 // Menu listing
@@ -174,13 +144,13 @@ input[type=checkbox]#search-box-toggle
 	overflow-y: hidden
 	flex-grow: 100
 	justify-content: flex-end
+	padding-left: 10px
 
 	ul
 		display: flex
 		flex-wrap: nowrap
-
-		margin: 0px
-		padding: 0px
+		margin: 0
+		padding: 0
 		list-style: none
 
 		li
@@ -197,9 +167,12 @@ input[type=checkbox]#search-box-toggle
 				background: var(--base-color)
 				display: block
 				padding: 0px 15px
+
 				color: white
+				color: #434241
+				font-weight: 600
 				font-size: 14px
-				line-height: 46px
+				line-height: 60px
 
 				&:hover
 					&:after
@@ -217,7 +190,7 @@ input[type=checkbox]#search-box-toggle
 					z-index: 3
 					width: calc(100% - 30px)
 					height: 3px
-					bottom: 7px
+					bottom: 15px
 					background-color: transparent
 					transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), background-color 0.15s cubic-bezier(0.215, 0.61, 0.355, 1)
 					transform: scale(0,1)
@@ -256,7 +229,7 @@ input#toggle-menu-checkbox
 		height: 2px
 		width: 100%
 		background: white
-		margin: 5px 0px
+		margin: 5px 0
 		transition: 0.3s
 		transform-origin: left center
 

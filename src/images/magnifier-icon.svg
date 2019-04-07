@@ -10,10 +10,10 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg2"
-   height="64"
-   width="64"
+   height="18"
+   width="18"
    version="1.1"
-   viewBox="0 0 64.000001 64.000001"
+   viewBox="0 0 18 18"
    inkscape:version="0.91 r13725"
    sodipodi:docname="magnifier-icon.svg">
   <defs
@@ -36,9 +36,9 @@
      inkscape:bbox-nodes="true"
      inkscape:snap-bbox-edge-midpoints="true"
      inkscape:snap-page="true"
-     inkscape:zoom="11.313709"
-     inkscape:cx="27.737163"
-     inkscape:cy="31.782336"
+     inkscape:zoom="32.000001"
+     inkscape:cx="10.195062"
+     inkscape:cy="5.8708598"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -55,28 +55,18 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     id="g4135"
-     transform="matrix(-1,0,0,1,64.508308,0)">
-    <rect
-       style="fill:#ffffff;fill-opacity:1"
-       x="-40.918251"
-       y="41.864002"
-       width="38.783863"
-       height="8.9496307"
-       transform="matrix(0.70711635,-0.70709721,0.70711635,0.70709721,0,0)"
-       ry="4.4748659"
-       id="rect4136" />
-    <ellipse
-       ry="17.990349"
-       rx="17.990835"
-       style="fill:none;stroke:#ffffff;stroke-width:6.00000048;stroke-dashoffset:8;stroke-opacity:1"
-       cx="40.999222"
-       cy="22.009096"
-       id="path4138" />
-  </g>
+  <path
+     style="fill:#646464;fill-opacity:1"
+     d="m 12.923072,11.353704 a 6.1316759,6.1315106 0 0 1 -1.920047,1.912755 l 4.335473,4.335473 c 0.530772,0.530757 1.385628,0.530757 1.9164,0 0.530773,-0.530758 0.530773,-1.385643 0,-1.916401 l -4.331826,-4.331827 z"
+     id="rect4136"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#646464;stroke-width:1.81302321;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:8;stroke-opacity:1"
+     d="M 0.9065114,7.3384262 A 6.4320901,6.4319146 0 0 0 7.3386016,13.770341 6.4320901,6.4319146 0 0 0 13.770692,7.3384262 6.4320901,6.4319146 0 0 0 7.3386016,0.9065116 6.4320901,6.4319146 0 0 0 0.9065114,7.3384262 Z"
+     id="path4138"
+     inkscape:connector-curvature="0" />
 </svg>

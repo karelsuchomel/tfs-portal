@@ -44,11 +44,13 @@ function display_theme_panel_fields()
 	add_settings_field("home-page-title", "Home page title", "home_page_title_field", "tfs-portal-theme-options", "section");
 	add_settings_field("base-color", "Base color", "base_color_field", "tfs-portal-theme-options", "section");
 	add_settings_field("highlight-color", "Highlight color", "highlight_color_field", "tfs-portal-theme-options", "section");
+	add_settings_field("theme-mode", "Theme mode", "theme_mode_field", "tfs-portal-theme-options", "section");
 
 	// Save and update field options
 	register_setting("section", "home_page_title");
 	register_setting("section", "base_color");
 	register_setting("section", "highlight_color");
+	register_setting("section", "theme_mode");
 }
 
 add_action("admin_init", "display_theme_panel_fields");
@@ -73,5 +75,20 @@ function highlight_color_field()
 {
 	$val = get_option('highlight_color');
 	echo '<input type="text" class="color-picker" name="highlight_color" value="' . $val . '" />';
+}
+
+function theme_mode_field()
+{
+	$isLight = get_option('theme_mode') === 'light' ? true : false;
+	echo '
+		<label>
+			<input type="radio" name="theme_mode" value="light" ' . ($isLight ? 'checked' : '') . '/>
+			Light
+		</label>
+		<label>
+			<input type="radio" name="theme_mode" value="dark" ' . (!$isLight ? 'checked' : '') . '/>
+			Dark
+		</label>
+	';
 }
 
