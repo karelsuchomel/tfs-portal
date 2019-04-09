@@ -10,7 +10,7 @@ import Home from './home/Home.js'
 import Single from './post/Single.js'
 
 const App = () => (
-	<div className="css-variables">
+	<div className="css-variables theme-mod-light-variables">
 		<Header />
 		{ false && <NavigationSideBar /> }
 		<Switch>

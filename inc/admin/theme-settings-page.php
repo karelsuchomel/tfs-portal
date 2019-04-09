@@ -1,6 +1,7 @@
 <?php
 
 require get_template_directory() . '/inc/admin/field-validation.php';
+require get_template_directory() . '/inc/admin/settings-defaults.php';
 
 //
 // Registering new admin settings page and section identifier
@@ -16,7 +17,7 @@ function theme_settings_page()
 				settings_fields("section");
 				// This is the identifier, to add
 				// markup/functionality to this specific section
-				do_settings_sections("tfs-portal-theme-options");      
+				do_settings_sections("tfs-portal-theme-options");
 				submit_button(); 
 			?>          
 		</form>
@@ -41,16 +42,28 @@ function display_theme_panel_fields()
 	add_settings_section("section", "", null, "tfs-portal-theme-options");
 	
 	// Add fields
+	// Basic fields
 	add_settings_field("home-page-title", "Home page title", "home_page_title_field", "tfs-portal-theme-options", "section");
 	add_settings_field("base-color", "Base color", "base_color_field", "tfs-portal-theme-options", "section");
 	add_settings_field("highlight-color", "Highlight color", "highlight_color_field", "tfs-portal-theme-options", "section");
-	add_settings_field("theme-mode", "Theme mode", "theme_mode_field", "tfs-portal-theme-options", "section");
+	add_settings_field("default-theme-mode", "Default theme mode", "default_theme_mode_field", "tfs-portal-theme-options", "section");
+	// Theme mode [tm] settings. Light [l] and dark [d]
+	add_settings_field("tm-l-window-bg", "Light theme - window background color", "tm_l_window_bg_field", "tfs-portal-theme-options", "section");
+	add_settings_field("tm-l-font-color", "Light theme - font color", "tm_l_font_color_field", "tfs-portal-theme-options", "section");
+	add_settings_field("tm-l-icon-fill", "Light theme - icon color", "tm_l_icon_fill_field", "tfs-portal-theme-options", "section");
+	add_settings_field("tm-l-line-border-color", "Light theme - lines and borders color", "tm_l_line_border_field", "tfs-portal-theme-options", "section");
+	add_settings_field("tm-l-panel-bg", "Light theme - panel background color", "tm_l_panel_bg_field", "tfs-portal-theme-options", "section");
 
 	// Save and update field options
 	register_setting("section", "home_page_title");
 	register_setting("section", "base_color");
 	register_setting("section", "highlight_color");
-	register_setting("section", "theme_mode");
+	register_setting("section", "default_theme_mode");
+	register_setting("section", "tm_l_window_bg");
+	register_setting("section", "tm_l_font_color");
+	register_setting("section", "tm_l_icon_fill");
+	register_setting("section", "tm_l_line_border_color");
+	register_setting("section", "tm_l_panel_bg");
 }
 
 add_action("admin_init", "display_theme_panel_fields");
@@ -61,34 +74,73 @@ add_action("admin_init", "display_theme_panel_fields");
 
 function home_page_title_field()
 {
-	$val = get_option('home_page_title');
+	global $settingsDefaults;
+	$val = get_option('home_page_title') ?: $settingsDefaults['home_page_title'];
 	echo '<input type="text" name="home_page_title" value="' . $val . '" />';
 }
 
 function base_color_field()
 {
-	$val = get_option('base_color');
+	global $settingsDefaults;
+	$val = get_option('base_color') ?: $settingsDefaults['base_color'];
 	echo '<input type="text" class="color-picker" name="base_color" value="' . $val . '" />';
 }
 
 function highlight_color_field()
 {
-	$val = get_option('highlight_color');
+	global $settingsDefaults;
+	$val = get_option('highlight_color') ?: $settingsDefaults['highlight_color'];
 	echo '<input type="text" class="color-picker" name="highlight_color" value="' . $val . '" />';
 }
 
-function theme_mode_field()
+function default_theme_mode_field()
 {
-	$isLight = get_option('theme_mode') === 'light' ? true : false;
+	global $settingsDefaults;
+	$prevSettings = get_option('default_theme_mode') ?: $settingsDefaults['default_theme_mode'];
+	$isLight = $prevSettings === 'light' ? true : false;
 	echo '
 		<label>
-			<input type="radio" name="theme_mode" value="light" ' . ($isLight ? 'checked' : '') . '/>
+			<input type="radio" name="default_theme_mode" value="light" ' . ($isLight ? 'checked' : '') . '/>
 			Light
 		</label>
 		<label>
-			<input type="radio" name="theme_mode" value="dark" ' . (!$isLight ? 'checked' : '') . '/>
+			<input type="radio" name="default_theme_mode" value="dark" ' . (!$isLight ? 'checked' : '') . '/>
 			Dark
 		</label>
 	';
 }
 
+function tm_l_window_bg_field()
+{
+	global $settingsDefaults;
+	$val = get_option('tm_l_window_bg') ?: $settingsDefaults['tm_l_window_bg'];
+	echo '<input type="text" class="color-picker" name="tm_l_window_bg" value="' . $val . '" />';
+}
+
+function tm_l_font_color_field()
+{
+	global $settingsDefaults;
+	$val = get_option('tm_l_font_color') ?: $settingsDefaults['tm_l_font_color'];
+	echo '<input type="text" class="color-picker" name="tm_l_font_color" value="' . $val . '" />';
+}
+
+function tm_l_icon_fill_field()
+{
+	global $settingsDefaults;
+	$val = get_option('tm_l_icon_fill') ?: $settingsDefaults['tm_l_icon_fill'];
+	echo '<input type="text" class="color-picker" name="tm_l_icon_fill" value="' . $val . '" />';
+}
+
+function tm_l_line_border_field()
+{
+	global $settingsDefaults;
+	$val = get_option('tm_l_line_border_color') ?: $settingsDefaults['tm_l_line_border_color'];
+	echo '<input type="text" class="color-picker" name="tm_l_line_border_color" value="' . $val . '" />';
+}
+
+function tm_l_panel_bg_field()
+{
+	global $settingsDefaults;
+	$val = get_option('tm_l_panel_bg') ?: $settingsDefaults['tm_l_panel_bg'];
+	echo '<input type="text" class="color-picker" name="tm_l_panel_bg" value="' . $val . '" />';
+}

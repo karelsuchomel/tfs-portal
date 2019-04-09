@@ -36,12 +36,25 @@ function tfs_portal_resources ()
 
 	// Generate CSS string with initial CSS variables
 	$cssVariables = sprintf(
-		'.css-variables {
+		'
+		.css-variables {
 			--base-color: %s;
 			--highlight-color: %s;
+		}
+		.theme-mod-light-variables {
+			--window-bg: %s;
+			--font-color: %s;
+			--icon-fill: %s;
+			--line-border-color: %s;
+			--panel-bg: %s;
 		}', 
 			get_option('base_color'),
-			get_option('highlight_color')
+			get_option('highlight_color'),
+			get_option('tm_l_window_bg'),
+			get_option('tm_l_font_color'),
+			get_option('tm_l_icon_fill'),
+			get_option('tm_l_line_border_color'),
+			get_option('tm_l_panel_bg')
 	);
 
 	wp_add_inline_style( 'style', $cssVariables );

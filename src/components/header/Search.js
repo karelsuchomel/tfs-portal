@@ -9,13 +9,11 @@ export default class Search extends React.Component {
 		return(
 			<div id="searchform" className="search-container">
 				<div className="mobile-centering-wrapper clear-both">
-					<div className="search-field-wrapper">
-						<input name="s" id="search-field" placeholder="Hledat" type="text" />
-					</div>
-				<label id="show-search-toggle" htmlFor="search-box-toggle"></label>
-				<button type="submit" id="searchsubmit">
-					<img src={ buildURL + magnifierIcon } alt="Clear field" />
-				</button>
+					<label id="show-search-toggle" htmlFor="search-box-toggle"></label>
+					<input name="s" id="search-field" placeholder="Hledat" type="text" />
+					<button type="submit" id="searchsubmit">
+						<img src={ buildURL + magnifierIcon } alt="Clear field" />
+					</button>
 				</div>
 			</div>
 		);
