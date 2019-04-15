@@ -5,3 +5,10 @@
 	-moz-user-select: none
 	-ms-user-select: none
 	user-select: none
+
+@mixin clear-both()
+  &:after
+    content: ""
+    display: table
+    clear: both
+
