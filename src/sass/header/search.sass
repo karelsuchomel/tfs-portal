@@ -3,36 +3,35 @@ input[type=checkbox]#search-box-toggle
 
 #searchform
 	padding-left: 10px
+	position: relative
+
+	svg
+		position: absolute
+		z-index: 2
+		top: 20px
+		right: 10px
+		pointer-events: none
 
 	#search-field
-		position: relative
-		z-index: 1
-		width: 200px
-		max-width: 200px
-		padding: 0 38px 0 8px
-		margin: 14px 0
+		width: 150px
+		max-width: 150px
+		padding: 0 38px 0 12px
+		margin: 12px 0
 		border-radius: 3px
 		transition: max-width 0.2s, width 0.2s
-		background-color: transparent
+		background-color: var(--panel-bg)
 
-		border: 1px solid $line-border-color
-		border: 1px solid var(--line-border-color)
+		border: 0
 
 		font-size: 14px
 		color: #444
-		line-height: 30px
-
-		&:hover, &:active, &:focus
-			background-color: $window-bg
-			background-color: var(--window-bg)
+		line-height: 36px
 
 		&:focus
 			max-width: 300px
 			width: 300px
 
 			z-index: 2
-			border: 1px solid $base-color
-			border: 1px solid var(--base-color)
 			box-shadow: 0 0 0 2px $highlight-color
 			box-shadow: 0 0 0 2px var(--highlight-color)
 
