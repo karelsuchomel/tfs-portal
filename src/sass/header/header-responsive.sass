@@ -1,5 +1,5 @@
 @media screen and(max-width: 960px)
-	#top-bar-menu-container
+	#header
 		max-width: 100%
 		display: flex
 
@@ -89,7 +89,7 @@
 	//
 
 	input#toggle-menu-checkbox
-		&:checked + #top-bar-container #top-bar-menu-container .icon-hamburger-menu
+		&:checked + #header #top-bar-wrapper .icon-hamburger-menu
 			#hamburger-line-1
 				margin-bottom: 4px
 				transform: rotate(43deg)
@@ -110,10 +110,10 @@
 	#searchform
 		padding-left: 0px
 
-	#top-bar-container
+	#top-bar-wrapper
 		padding-top: 40px
 
-	#top-bar-menu-container
+	#header
 		height: auto
 
 		#logo-wrapper

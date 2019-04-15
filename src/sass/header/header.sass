@@ -4,16 +4,16 @@
 // Top bar
 //
 
-#top-bar-container
+#header
 	position: relative
 	z-index: 6
 
-	border-top: 2px solid $base-color
-	border-top: 2px solid var(--base-color)
-	background-color: $panel-bg
-	background-color: var(--panel-bg)
+	border-bottom: 2px solid $base-color
+	border-bottom: 2px solid var(--panel-bg)
+	background-color: $window-bg
+	background-color: var(--window-bg)
 
-#top-bar-menu-container
+#top-bar-wrapper
 	max-width: $content-max-width
 	margin: 0 auto
 
@@ -21,15 +21,12 @@
 // Logo
 //
 
-#top-bar-menu-container
+#header
 	#logo-wrapper
 		display: block
 		float: left
 		padding: 10px 20px
 		cursor: pointer
-
-		background-color: $panel-bg
-		background-color: var(--panel-bg)
 
 		img
 			@include unselectable
@@ -56,19 +53,19 @@ input[type=checkbox]#search-box-toggle
 	padding-left: 10px
 
 	#search-field
+		position: relative
+		z-index: 1
 		float: left
 		width: 200px
 		max-width: 200px
-		padding: 0 8px
+		padding: 0 38px 0 8px
 		margin: 14px 0
-		border-top-left-radius: 3px
-		border-bottom-left-radius: 3px
+		border-radius: 3px
 		transition: max-width 0.2s, width 0.2s
 		background-color: transparent
 
 		border: 1px solid $line-border-color
 		border: 1px solid var(--line-border-color)
-		border-right: 0
 
 		font-size: 14px
 		color: #444
@@ -82,34 +79,25 @@ input[type=checkbox]#search-box-toggle
 			max-width: 300px
 			width: 300px
 
+			z-index: 2
+			border: 1px solid $base-color
+			border: 1px solid var(--base-color)
 			box-shadow: 0 0 0 2px $highlight-color
 			box-shadow: 0 0 0 2px var(--highlight-color)
 
-	#searchsubmit
-		float: left
-		padding: 7px 8px
-		margin: 14px 0
-		border: 1px solid #949392
-		border-left: 0
-		border-top-right-radius: 3px
-		border-bottom-right-radius: 3px
-		background-color: #E9E8E7
-		transition: background-color 0.15s
+		//
+		// Magnifier icon
+		//
 
-		color: #444
-		font-size: 14px
-		line-height: 30px
-
-		&:hover, &:active
-			background-color: white
-
-		img
+		&:after
+			content: ""
 			display: block
-			float: left
-			width: 16px
-			height: 16px
-			margin-right: 4px
-			cursor: pointer
+			position: absolute
+			width: 30px
+			height: 30px
+			background: red
+			top: 0
+			right: 0
 
 	#show-search-toggle
 		display: none
@@ -227,4 +215,6 @@ input#toggle-menu-checkbox
 		line-height: 30px
 
 
-@import "menu-top-bar-responsive"
+@import "header-responsive"
+
+@import "user-navigation"
