@@ -3,7 +3,7 @@ import React from 'react';
 export default class MenuItems extends React.Component {
 	render() {
 		return(
-			<div id="quick-links-navigation">
+			<div id="links-navigation">
 				<ul id="menu-horni-lista" className="menu">
 					<li id="menu-item-8" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-8">
 						<a href="http://192.168.1.190/zs-hroznova/obedy/">Obědy</a>

@@ -1,11 +1,9 @@
-@import "../../mixins"
-
 //
 // Buttons for PDF, DOC, ZIP, etc. documents
 //
 
 .button-prefab
-  @include unselectable
+  @extend %unselectable
 
   display: inline-block
   margin: 8px 8px 8px 0

@@ -17,9 +17,6 @@ module.exports = {
 		filename: 'js/[name].js',
 		path: path.resolve(__dirname, '../build')
 	},
-	resolve: {
-		alias: { 'WPSettings': path.resolve(__dirname, '../src/utils/wordpress-generated-app-settings') }
-	},
 	module: {
 		rules: [
 			{

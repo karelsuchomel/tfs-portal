@@ -1,0 +1,57 @@
+//
+// Extendables
+// do not define normal classes here, because if you import those,
+// then there will be as many copies of them in the generated styles.
+//
+
+%unselectable
+	-webkit-touch-callout: none
+	-webkit-user-select: none
+	-khtml-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+
+%clear-both
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+
+// Buttons
+
+%stealth-button
+	position: relative
+	padding: 0 0.75rem
+	margin: 0.75rem 0
+	border-radius: 3px
+
+	color: var(--font-color)
+	line-height: 2.25rem
+	cursor: pointer
+
+	&:after
+		content: ''
+		position: absolute
+		z-index: -1
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
+		border-radius: 3px
+		background: var(--panel-bg)
+		transform: scale(0.95)
+		opacity: 0
+		transition: opacity 0.2s, transform 0.2s
+
+	&:hover, &:active
+		&:after
+			opacity: 1
+			transform: scale(1)
+
+	&:focus
+		outline: 0
+		box-shadow: 0 0 0 2px var(--highlight-color)
+		background: var(--panel-bg)
+
