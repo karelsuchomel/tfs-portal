@@ -13,16 +13,10 @@
 		clear: both
 
 	.menu-icon-container
+		@extend %button-hover-active-focus
 		padding: 0.4375rem 0.75rem
 		margin: 0.75rem 0.5rem
 		width: 18px
-		border-radius: 3px
-
-		&:hover, &:active
-			background-color: var(--panel-bg)
-		&:focus
-			outline: 0
-			box-shadow: inset 0 0 0 2px var(--highlight-color)
 
 		.line
 			height: 2px
