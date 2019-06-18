@@ -11,11 +11,11 @@ export default class NavigationTopBar extends React.Component {
 		return(
 			<header>
 				<div id="top-bar-wrapper">
-
-					<HamburgerMenuButton />
-					
-					<SiteIdentity />
-
+					<nav>
+						<HamburgerMenuButton />
+						
+						<SiteIdentity />
+					</nav>
 					<nav>
 						<QuickLinksNavigation />
 						
